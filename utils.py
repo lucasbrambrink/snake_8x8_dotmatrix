@@ -90,6 +90,7 @@ class HC595(object):
         self.shift_register_clock_input = shift_register_clock_input
 
     def pulse_state(self, states, sleeptime=None):
+        print states
         for state in states:
             self.store_bits(state)
         self.release_memory()
