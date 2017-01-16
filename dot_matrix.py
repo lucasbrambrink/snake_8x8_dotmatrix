@@ -59,9 +59,7 @@ class DotMatrix(object):
         column = self.FULL
         column[x] = "0"
         print row, column
-        self.push_state(*map(
-            BinaryUtility.convert_binary_to_hex,
-            (column, row)))
+        self.push_state(*map("".join, (row, column)))
 
     def display_matrix(self):
         for row in self.indexes:
