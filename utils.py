@@ -96,6 +96,7 @@ class HC595(object):
 
     def store_bits(self, byte):
         for bit in range(0, 8):
+            print (0x80 & (byte << bit))
             GPIO.output(self.serial_input, 0x80 & (byte << bit))
             self.pulse_clock_pin(self.shift_register_clock_input)
 
