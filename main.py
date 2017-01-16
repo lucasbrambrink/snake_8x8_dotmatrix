@@ -6,15 +6,19 @@ import threading
 import game_state
 import readchar
 
+# Run 3 threads concurrently
 
 def increment_game_state():
+	# after GAME_SPEED seconds, step into next state
 	while True:
 		game_state.snake_game.increment()
 		time.sleep(game_state.GAME_SPEED)
 		if game_state.stop_flag:
 			break
 
+
 def display_dot_matrix_frames():
+	# constantly refresh display ~15ms
 	while True:
 		if game_state.queue.empty():
 			game_state.dm.display_matrix()
@@ -27,6 +31,7 @@ def display_dot_matrix_frames():
 
 
 def listen_for_keychange():
+	# propagate user input to game singleton
 	while True:
 		char = readchar.readchar()
 		try:
@@ -42,7 +47,7 @@ def listen_for_keychange():
 
 
 if __name__ == "__main__":
-	game_state.initialize_game_variables() # quasi-singleton
+	game_state.initialize_game_variables()
 	frames = threading.Thread(target=display_dot_matrix_frames)
 	game = threading.Thread(target=increment_game_state)
 	frames.start()
