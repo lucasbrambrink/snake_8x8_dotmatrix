@@ -6,7 +6,7 @@ import threading
 import game_state
 import readchar
 
-# Run 3 threads concurrently
+# Run 2 additional threads
 
 def increment_game_state():
 	# after GAME_SPEED seconds, step into next state
@@ -32,6 +32,7 @@ def display_dot_matrix_frames():
 
 def listen_for_keychange():
 	# propagate user input to game singleton
+	# run in main thread (for input)
 	while True:
 		char = readchar.readchar()
 		try:
