@@ -5,5 +5,5 @@
 See it live!
 https://youtu.be/iCXStMe7QQ0
 
-![in game](http://imgur.com/x5b9fTB)
-![on fail](http://imgur.com/RZMYu4x)
+![in game](http://i.imgur.com/x5b9fTB.jpg)
+![on fail](http://i.imgur.com/RZMYu4x.jpg)
