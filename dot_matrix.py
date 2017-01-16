@@ -55,9 +55,9 @@ class DotMatrix(object):
 
     def light_point(self, x, y):
         row = self.BLANK
-        row[y] = "1"
+        row[x] = "1"
         column = self.FULL
-        column[x] = "0"
+        column[y] = "0"
         print row, column
         self.push_state(*map(BinaryUtility.convert_binary_to_hex,
                              map("".join, (column, row))))
