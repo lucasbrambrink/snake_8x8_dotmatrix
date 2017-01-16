@@ -24,6 +24,7 @@ class Snake(object):
 		return [p.as_t for p in self.pixels]
 
 	def step(self, direction):
+		"""LIFO data structure ensures shape preservation"""
 		lead = self.pixels[0]
 		new_p = Pixel(lead.x, lead.y)
 		new_p.step(direction)
