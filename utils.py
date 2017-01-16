@@ -9,14 +9,6 @@ class Pixel(object):
 	RIGHT = (0, 1)
 	CORE_STEPS = (UP, RIGHT, DOWN, LEFT)
 
-	UP_RIGHT = (-1, 1)
-	DOWN_RIGHT = (1, 1)
-	DOWN_LEFT = (1, -1)
-	UP_LEFT = (-1, -1)
-	ALL_STEPS = (
-		UP, UP_RIGHT, RIGHT, DOWN_RIGHT, 
-		DOWN, DOWN_LEFT, LEFT, UP_LEFT)
-
 	def __init__(self, x, y):
 		self.x = x
 		self.y = y
@@ -42,6 +34,7 @@ class Pixel(object):
 
 	def direction_to_previous(self, previous):
 		return (self.x - previous[0], self.y - previous[0])
+
 
 class BinaryUtility(object):
 
@@ -96,9 +89,6 @@ class HC595(object):
 		self.serial_input = serial_input
 		self.storage_clock_input = storage_clock_input
 		self.shift_register_clock_input = shift_register_clock_input
-		self.sleeptime = self.DEFAULT_SLEEP_TIME
-		if type(sleeptime) is int:
-			self.sleeptime = sleeptime
 
 	def pulse_state(self, states, sleeptime=None):
 		for state in states:

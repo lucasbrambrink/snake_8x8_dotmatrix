@@ -7,7 +7,6 @@ class Snake(object):
 
 	def __init__(self, start):
 		self.pixels = []
-		self.last_popped = None
 
 		for p in range(4):
 			self.pixels.append(Pixel(start[0], start[1]))

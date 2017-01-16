@@ -27,3 +27,4 @@ def initialize_game_variables():
 	
 	global GAME_SPEED
 	GAME_SPEED = 0.3
+
