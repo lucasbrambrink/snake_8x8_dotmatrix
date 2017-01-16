@@ -59,6 +59,9 @@ class DotMatrix(object):
         column = self.FULL
         column[y] = "0"
         print row, column
+        return self.push_list_state(column, row)
+
+    def push_list_state(self, column, row):
         self.push_state(*map(BinaryUtility.convert_binary_to_hex,
                              map("".join, (column, row))))
 
