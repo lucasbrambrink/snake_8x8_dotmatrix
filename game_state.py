@@ -26,4 +26,4 @@ def initialize_game_variables():
 	last_key_press.put(Pixel.UP)
 	
 	global GAME_SPEED
-	GAME_SPEED = 0.4
+	GAME_SPEED = 0.3
