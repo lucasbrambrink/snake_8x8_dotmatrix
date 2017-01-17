@@ -1,12 +1,11 @@
-import RPi.GPIO as GPIO
 import time
 
 
 class Pixel(object):
-    UP = (1, 0)
-    LEFT = (0, -1)
-    DOWN = (-1, 0)
-    RIGHT = (0, 1)
+    UP = (0, -1)
+    LEFT = (-1, 0)
+    DOWN = (0, 1)
+    RIGHT = (1, 0)
     CORE_STEPS = (UP, RIGHT, DOWN, LEFT)
 
     def __init__(self, x, y):
@@ -85,6 +84,8 @@ class HC595(object):
     DEFAULT_SLEEP_TIME = 0.1
 
     def __init__(self, serial_input, storage_clock_input, shift_register_clock_input, sleeptime=None):
+        import RPi.GPIO as GPIO
+        self.GPIO = GPIO
         self.serial_input = serial_input
         self.storage_clock_input = storage_clock_input
         self.shift_register_clock_input = shift_register_clock_input
@@ -98,13 +99,13 @@ class HC595(object):
     def store_bits(self, byte):
         for bit in range(0, 8):
             print (0x80 & (byte << bit))
-            GPIO.output(self.serial_input, 0x80 & (byte << bit))
+            self.GPIO.output(self.serial_input, 0x80 & (byte << bit))
             self.pulse_clock_pin(self.shift_register_clock_input)
 
     def release_memory(self):
         self.pulse_clock_pin(self.storage_clock_input)
 
     def pulse_clock_pin(self, pin):
-        GPIO.output(pin, GPIO.HIGH)
+        self.GPIO.output(pin, self.GPIO.HIGH)
         time.sleep(0)
-        GPIO.output(pin, GPIO.LOW)
+        self.GPIO.output(pin, self.GPIO.LOW)
