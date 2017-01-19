@@ -89,6 +89,7 @@ class HC595(object):
         self.serial_input = serial_input
         self.storage_clock_input = storage_clock_input
         self.shift_register_clock_input = shift_register_clock_input
+        self.init_gpio()
 
     def pulse_state(self, states, sleeptime=None):
         print states
@@ -109,3 +110,16 @@ class HC595(object):
         self.GPIO.output(pin, self.GPIO.HIGH)
         time.sleep(0)
         self.GPIO.output(pin, self.GPIO.LOW)
+
+    @property
+    def PINS(self):
+        return (self.serial_input,
+                self.storage_clock_input,
+                self.shift_register_clock_input)
+
+    def init_gpio(self):
+        self.GPIO.setmode(self.GPIO.BOARD)  # Number GPIOs by its physical location
+        for pin in self.PINS:
+            self.GPIO.setup(pin, self.GPIO.OUT)
+            self.GPIO.output(pin, self.GPIO.LOW)
+
